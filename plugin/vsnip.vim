@@ -38,7 +38,7 @@ endfunction
 " extra mapping
 "
 if g:vsnip_extra_mapping
-  snoremap <BS> <BS>i
+  snoremap <BS> <BS>i<C-r>=<SID>jump(1)<CR>
 endif
 
 "
@@ -107,6 +107,8 @@ function! s:map(fn) abort
   endtry
 
   let &virtualedit = l:virtualedit
+
+  return ''
 endfunction
 
 "
