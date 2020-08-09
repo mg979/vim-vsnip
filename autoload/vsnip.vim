@@ -112,6 +112,11 @@ function! vsnip#get_context() abort
       for l:prefix in (l:snippet.prefix + l:snippet.prefix_alias)
         let l:prefix_len = strchars(l:prefix)
 
+        " an empty prefix?
+        if !l:prefix_len
+          continue
+        endif
+
         " just match prefix.
         if strcharpart(l:before_text, l:before_text_len - l:prefix_len, l:prefix_len) !=# l:prefix
           continue
