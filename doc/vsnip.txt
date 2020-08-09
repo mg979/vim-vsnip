@@ -12,6 +12,7 @@ FUNCTION                                                      |vsnip-function|
 MAPPING                                                        |vsnip-mapping|
 COMMAND                                                        |vsnip-command|
 BUILT-IN VARIABLE                                    |vsnip-built-in-variable|
+VARIABLE INTERPOLATION                                   |vsnip-interpolation|
 LIMITATION                                                  |vsnip-limitation|
 CHANGELOG                                                    |vsnip-changelog|
 
@@ -234,6 +235,34 @@ ${VIM:...Vim script expression...}~
 
     Currently, vsnip only once resolves variable at the snippet initialization.
 
+
+
+
+==============================================================================
+VARIABLE INTERPOLATION                                   *vsnip-interpolation*
+
+You can also define your own variables in the snippet definition. They can
+also be evaluated as |vimscript|, |lua| or |python| code.
+
+`Details`: a variable like `$VAR_NAME` can be interpolated if the key `VAR_NAME`
+is present in the snippet. The interpolated variable can be evaluated as vim
+code, lua code or python code, or inserted verbatim.
+
+To be evaluated as code, the content of the `VAR_NAME` key must begin with
+`!vim`, `!lua` or `!py`. Anything else is inserted verbatim.
+
+Example:
+>
+  "date": {
+      "body": [
+          "$DATE"
+      ],
+      "description": "today's date",
+      "prefix": [
+          "date"
+      ],
+      "DATE": "!vim strftime('%D')"
+  }
 
 
 

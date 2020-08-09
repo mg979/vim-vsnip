@@ -123,6 +123,7 @@ function! vsnip#get_context() abort
         endif
 
         let l:line = line('.') - 1
+        let b:vsnip_snippet_variables = filter(copy(l:snippet), "v:key =~ '^\\u\\+$'")
         return {
         \   'range': {
         \     'start': {
