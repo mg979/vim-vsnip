@@ -124,6 +124,7 @@ function! vsnip#get_context() abort
         if l:prefix =~# '^\h' && l:before_text !~# '\<\V' . escape(l:prefix, '\/?') . '\m$'
           continue
         endif
+        let b:vsnip_snippet_variables = filter(copy(l:snippet), "v:key =~ '^\\u\\+$'")
         return s:create_context(l:snippet, l:before_text_len, l:prefix_len)
       endfor
     endfor
