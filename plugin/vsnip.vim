@@ -176,6 +176,7 @@ augroup vsnip
   autocmd InsertLeave * call s:on_insert_leave()
   autocmd TextChanged,TextChangedI,TextChangedP * call s:on_text_changed()
   autocmd BufWritePost * call s:on_buf_write_post()
+  autocmd InsertLeave * silent! unlet b:vsnip_snippet_variables
 augroup END
 
 "

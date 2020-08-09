@@ -64,13 +64,14 @@ endfunction
 "
 function! s:format_snippet(label, snippet) abort
   let [l:prefixes, l:prefixes_alias] = s:resolve_prefix(a:snippet.prefix)
-  return {
+  let l:variables = filter(copy(a:snippet), "v:key =~ '[A-Z]\\+'")
+  return extend({
   \   'label': a:label,
   \   'prefix': l:prefixes,
   \   'prefix_alias': l:prefixes_alias,
   \   'body': type(a:snippet.body) == type([]) ? a:snippet.body : [a:snippet.body],
   \   'description': get(a:snippet, 'description', '')
-  \ }
+  \ }, l:variables)
 endfunction
 
 "
